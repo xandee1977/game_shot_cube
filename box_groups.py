@@ -24,10 +24,18 @@ class box_groups:
 		for i in range(self.box_ammount):
 			item = {
 				"color" : randint(0, (len(self.box_colors)-1)), # Index of desired color
-				"show" : 1 # Control the box visibility
+				"show" : 1, # Control the box visibility
+				"rect": None
 			}
 			result.append(item)
 		return result
+
+	"""
+	# Getting an item by rect
+	def get_item(self, rect):
+		for line in self.box_lines:
+			for item in line:
+	"""
 
 	# Append itens to box_line list
 	def feed_box_lines(self):
