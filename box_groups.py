@@ -25,6 +25,7 @@ class box_groups:
 			item = {
 				"color" : randint(0, (len(self.box_colors)-1)), # Index of desired color
 				"show" : 1, # Control the box visibility
+				"point": 10,
 				"rect": None
 			}
 			result.append(item)

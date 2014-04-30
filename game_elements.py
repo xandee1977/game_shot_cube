@@ -75,14 +75,19 @@ class Vehicle(pygame.sprite.Sprite):
     height = 0    
     move_factor = 0.5 # Fator de movimento
     
-    def __init__ (self, surface):
+    def __init__ (self, surface, base_path):
         self.surface = surface
+        self.base_path = base_path
 
     def draw_vehicle(self, event, color, width, height, position):
         self.pos_x, self.pos_y = position
         self.width = width
         self.height = height
         
+        self.image = pygame.image.load( self.base_path + '/img/spaceship.png' )
+        self.image.set_clip(pygame.Rect(self.pos_x, self.pos_y, self.width, self.height))
+
+
         if event.type == KEYDOWN:
             if (event.key == K_LEFT):
                 self.current_move = VEHICLE_MOVE_LEFT
@@ -98,7 +103,12 @@ class Vehicle(pygame.sprite.Sprite):
         else:
             self.pos_x = self.pos_x
 
-        self.rect = pygame.draw.rect(self.surface, color, (self.pos_x,self.pos_y,width,height))
+        #self.rect = pygame.draw.rect(self.surface, color, (self.pos_x,self.pos_y,width,height))
+
+        self.rect = self.image.get_rect()
+        self.rect.topleft = position
+        self.surface.blit(self.image, self.rect)
+
 
     def get_pos_x(self):
         return self.pos_x
