@@ -22,7 +22,10 @@ class box_groups:
 	def get_line(self):
 		result = []
 		for i in range(self.box_ammount):
-			item = randint(0, (len(self.box_colors)-1))
+			item = {
+				"color" : randint(0, (len(self.box_colors)-1)), # Index of desired color
+				"show" : 1 # Control the box visibility
+			}
 			result.append(item)
 		return result
 

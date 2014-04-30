@@ -4,8 +4,8 @@ from random import randint
 import pygame
 from pygame. locals import *
 
-import Box
-from  Box import *
+import game_elements
+from  game_elements import *
 
 import box_groups # Importa o arquivo
 from  box_groups import * # Importa as classes do arquivo
@@ -40,8 +40,10 @@ def draw_lines():
     space = (screen_width - (box_group.box_ammount * size))/box_group.box_ammount
     countdown = (len(box_lines)-1)
     while countdown >= 0:
-        for color_index in box_lines[countdown]:
-            b = Box(screen, box_group.get_color(color_index), size, (px,py))
+        for box_item in box_lines[countdown]:
+            # Show only visibles boxes
+            if(box_item["show"] == 1):
+                b = Box(screen, box_group.get_color(box_item["color"]), size, (px,py))
             px = px + size + space
         px = 0
         py = py + size + space
